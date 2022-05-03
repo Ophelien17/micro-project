@@ -1,7 +1,7 @@
 <template>
   <div class="hello container">
     <div class="row row-cols-lg-2 row-cols-sm-1 justify-content-center tiles">
-      <div class="col tile" v-for="(product) in Timeline">
+      <div class="col tile" v-for="(product) in Products">
         <img :title="product.productName" alt="ProductImage" class="mx-auto d-block imgProduct"
              src="../assets/eau.jpg"/>
         <h5>Product name : {{product.productName}}</h5>
