@@ -1,7 +1,7 @@
 <template>
-  <div class="hello container">
+  <div class="container">
     <div class="row row-cols-lg-2 row-cols-sm-1 justify-content-center tiles">
-      <div class="col tile" v-for="(product) in Products">
+      <div class="col m-5 tile" v-for="(product) in Products">
         <img :title="product.productName" alt="ProductImage" class="mx-auto d-block imgProduct"
              src="../assets/eau.jpg"/>
         <h5>Product name : {{product.productName}}</h5>
@@ -10,7 +10,12 @@
             Price : {{product.productPrice}}€
           </dic>
           <div class="col">
-            <img alt="Cart" class="addToCart" src="../assets/cart.png" title="Ajouter au panier"/>
+            <div class="float-right">
+              <button @click="addToCart(product.productId)" class="btn"><img alt="Cart" class="addToCart"
+                                                                             src="../assets/cart.png"
+                                                                             title="Ajouter au panier"/></button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -19,14 +24,20 @@
 </template>
 
 <script>
-
   import Products from '../../products'
 
   export default {
-    name: 'HelloWorld',
+    name: 'ItemList',
     data () {
       return {
-        Products
+        Products,
+        cart: []
+      }
+    },
+
+    methods: {
+      addToCart (product) {
+
       }
     },
 
@@ -59,6 +70,12 @@
     border-radius: 5px;
     margin: 5px 0;
     width: 300px;
+  }
+
+  .btn {
+    border: none;
+    background-color: white;
+    border-radius: 5px;
   }
 
   .addToCart {
