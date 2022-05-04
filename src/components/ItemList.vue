@@ -10,8 +10,8 @@
             Price : {{product.productPrice}}€
           </dic>
           <div class="col">
-            <div class="float-right">
-              <button @click="addToCart(product.productId)" class="btn"><img alt="Cart" class="addToCart"
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button @click="addToCart(product)" class="btn"><img alt="Cart" class="addToCart"
                                                                              src="../assets/cart.png"
                                                                              title="Ajouter au panier"/></button>
             </div>
@@ -27,16 +27,22 @@
   import Products from '../../products'
 
   export default {
+    props: {
+      cart: []
+    },
     name: 'ItemList',
     data () {
       return {
         Products,
-        cart: []
+        cart: this.$props.cart
       }
     },
 
     methods: {
       addToCart (product) {
+        console.log(this.$props.cart)
+        this.$props.cart.push(product)
+        console.log(this.$props.cart)
 
       }
     },

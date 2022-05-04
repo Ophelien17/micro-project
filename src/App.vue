@@ -10,11 +10,17 @@
       </b-navbar>
     </div>
     <router-view/>
+
   </div>
 </template>
 
 <script>
+  import Cart from './components/Cart'
   export default {
+    components: {Cart},
+    props: {
+      cart: []
+    },
     name: 'App'
   }
 </script>

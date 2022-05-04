@@ -6,20 +6,27 @@ import Cart from '../components/Cart'
 Vue.use(Router)
 
 export default new Router({
+
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'ItemList',
-      component: ItemList
+      component: ItemList,
+      props: {
+        cart: []
+      }
     },
     {
       path: '/cart',
-      component: Cart
+      component: Cart,
+      props: {
+        cart: []
+      }
     },
     {
       path: '*',
       redirect: '/'
-    }
+    },
   ]
 })
