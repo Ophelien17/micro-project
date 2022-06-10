@@ -1,7 +1,4 @@
-<script setup>
 
-
-</script>
 
 <script>
   import ItemList from './ItemList'

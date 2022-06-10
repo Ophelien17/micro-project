@@ -2,10 +2,15 @@
   <div id="app">
     <div>
       <b-navbar class="navBar" toggleable type="dark">
-        <b-navbar-brand href="/">Water</b-navbar-brand>
+        <b-navbar-brand>
+          <router-link to="/">Water</router-link>
+        </b-navbar-brand>
 
         <b-navbar-nav>
-          <b-nav-item href="/cart"><img alt="Cart" class="cart" src="./assets/cart.png" title="Panier"></b-nav-item>
+
+          <b-nav-item>
+            <router-link to="/cart"><img alt="Cart" class="cart" src="./assets/cart.png" title="Panier"></router-link>
+          </b-nav-item>
           </b-navbar-nav>
       </b-navbar>
     </div>

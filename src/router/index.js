@@ -13,16 +13,10 @@ export default new Router({
       path: '/',
       name: 'ItemList',
       component: ItemList,
-      props: {
-        cart: []
-      }
     },
     {
       path: '/cart',
       component: Cart,
-      props: {
-        cart: []
-      }
     },
     {
       path: '*',

@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <div class="empty" v-if="this.itemInCart.length===0">
-      Le panier est vide. Découvrez nos produits <a href="/">ici</a>
+    <div class="empty" v-if="this.articles.length===0">
+      Le panier est vide. Découvrez nos produits
+      <router-link to="/">ici</router-link>
     </div>
 
     <div class="items" v-else>
-      <div class="row item" v-for="(item) in itemInCart">
+      <div class="row item" v-for="(item) in articles">
         <div class="col">
-
-          <buttun v-on:click="deleteItem()"><img alt="Image produit" class="imgProduct" src="../assets/eau.jpg"
-                                                 title=""></buttun>
+          <img alt="Image produit" class="imgProduct" src="../assets/eau.jpg"
+               title="">
         </div>
 
         <div class="col">
@@ -19,13 +19,13 @@
         </div>
         <div class="col">
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn">
+            <button class="btn" v-on:click="deleteItem(item)">
               <img alt="Trash" class="trash" src="../assets/delete.png" title="Supprimer">
             </button>
           </div>
 
           <p class="text-end">{{item.productPrice}}€</p>
-          <p class="text-end">- 2 +</p>
+          <p class="text-end">- +</p>
           <h5 class="text-end">TOTAL : 0€</h5>
         </div>
       </div>
@@ -43,48 +43,45 @@
             <h5>TOTAL : </h5>
           </div>
           <div class="col">
-            <h5 class="text-end">{{}}€</h5>
+            <h5 class="text-end">{{totalPrice}}€</h5>
           </div>
         </div>
-        </div>
-
       </div>
 
     </div>
+
+  </div>
 </template>
 
+
 <script>
+  import {mapState, mapGetters, mapActions} from 'vuex'
+
   export default {
     props: {
       cart: []
     },
+    computed: {
+      ...mapState([
+        'articles',
+        'price'
+      ]),
+      ...mapGetters([
+        'totalPrice'
+      ])
+    },
     name: 'Cart',
     data () {
-      return {
-        itemInCart: [{
-          'productId': '212A14C7-E781-4F4E-88CE-6D4D2AAF44FB',
-          'productName': 'Eau aromatisée fraise VOLVIC JUICY',
-          'productPicture': 'http://ville.biarritz.fr/mon-quotidien-egunerokoa/environnement/eau-potable-494.html',
-          'productPrice': 112
-        },
-          {
-            'productId': '212A14C7-E781-4F4E-88CE-6D4D2AAF44FB',
-            'productName': 'Eau aromatisée fraise VOLVIC JUICY',
-            'productPicture': 'http://ville.biarritz.fr/mon-quotidien-egunerokoa/environnement/eau-potable-494.html',
-            'productPrice': 112
-          }]
-      }
+      return {}
 
     },
     methods: {
-      deleteItem () {
-        console.log(this.$props.cart)
-
-      }
-    },
-    mounted () {
-      console.log(this.$props)
-
+      ...mapActions([
+        'deleteArticle'
+      ]),
+      deleteItem (product) {
+        this.deleteArticle(product)
+      },
 
     },
   }

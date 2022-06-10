@@ -1,20 +1,21 @@
 <template>
   <div class="container">
     <div class="row row-cols-lg-2 row-cols-sm-1 justify-content-center tiles">
-      <div class="col m-5 tile" v-for="(product) in Products">
+      <div :key="product.productId" class="col m-5 tile" v-for="(product) in Products">
         <img :title="product.productName" alt="ProductImage" class="mx-auto d-block imgProduct"
              src="../assets/eau.jpg"/>
         <h5>Product name : {{product.productName}}</h5>
         <div class="row">
-          <dic class="col">
+          <div class="col">
             Price : {{product.productPrice}}€
-          </dic>
+          </div>
           <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button @click="addToCart(product)" class="btn"><img alt="Cart" class="addToCart"
                                                                              src="../assets/cart.png"
                                                                              title="Ajouter au panier"/></button>
             </div>
+
 
           </div>
         </div>
@@ -25,31 +26,30 @@
 
 <script>
   import Products from '../../products'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
-    props: {
-      cart: []
-    },
+
     name: 'ItemList',
     data () {
       return {
         Products,
-        cart: this.$props.cart
       }
     },
 
+    computed: {},
     methods: {
-      addToCart (product) {
-        console.log(this.$props.cart)
-        this.$props.cart.push(product)
-        console.log(this.$props.cart)
+      ...mapActions([
+        'addArticle'
+      ]),
 
-      }
+      addToCart (product) {
+        this.addArticle(product)
+      },
     },
 
     mounted () {
       // eslint-disable-next-line no-undef
-      console.log(Products[1].productId)
     }
   }
 
