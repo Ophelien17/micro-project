@@ -68,7 +68,7 @@
       ]),
       ...mapGetters([
         'totalPrice'
-      ])
+      ]),
     },
     name: 'Cart',
     data () {

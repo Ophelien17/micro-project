@@ -8,6 +8,7 @@
 
         <b-navbar-nav>
 
+          <b-nav-item>{{totalArticles}}</b-nav-item>
           <b-nav-item>
             <router-link to="/cart"><img alt="Cart" class="cart" src="./assets/cart.png" title="Panier"></router-link>
           </b-nav-item>
@@ -21,12 +22,18 @@
 
 <script>
   import Cart from './components/Cart'
+  import {mapGetters} from 'vuex'
   export default {
     components: {Cart},
     props: {
       cart: []
     },
-    name: 'App'
+    name: 'App',
+    computed: {
+      ...mapGetters([
+        'totalArticles'
+      ]),
+    },
   }
 </script>
 

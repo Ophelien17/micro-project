@@ -12,8 +12,8 @@
           <div class="col">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button @click="addToCart(product)" class="btn"><img alt="Cart" class="addToCart"
-                                                                             src="../assets/cart.png"
-                                                                             title="Ajouter au panier"/></button>
+                                                                   src="../assets/cart.png"
+                                                                   title="Ajouter au panier"/></button>
             </div>
 
 

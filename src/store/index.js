@@ -22,7 +22,6 @@ const store = new Vuex.Store({
   actions: {
     addArticle ({state, commit, getters}, product) {
       commit('addArticle', product)
-      getters.totalPrice
     },
 
     deleteArticle ({state, commit}, product) {
@@ -37,6 +36,10 @@ const store = new Vuex.Store({
         res += state.articles[i].productPrice
       }
       return res
+    },
+
+    totalArticles (state) {
+      return state.articles.length
     }
   }
 
