@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="empty" v-if="this.articles.length===0">
+    <div class="empty" v-if="articles.length===0">
       Le panier est vide. Découvrez nos produits
       <router-link to="/">ici</router-link>
     </div>
 
     <div class="items" v-else>
-      <div class="row item" v-for="(item) in articles">
+      <div class="row item" v-for="(item) in articleToShow">
         <div class="col">
           <img alt="Image produit" class="imgProduct" src="../assets/eau.jpg"
                title="">
@@ -25,7 +25,7 @@
           </div>
 
           <p class="text-end">{{item.productPrice}}€</p>
-          <p class="text-end">- +</p>
+          <p class="text-end">- {{qteArticles(item.productId)}} +</p>
           <h5 class="text-end">TOTAL : 0€</h5>
         </div>
       </div>
@@ -58,17 +58,17 @@
   import {mapState, mapGetters, mapActions} from 'vuex'
 
   export default {
-    props: {
-      cart: []
-    },
     computed: {
       ...mapState([
         'articles',
         'price'
       ]),
       ...mapGetters([
-        'totalPrice'
+        'totalPrice',
+        'articleToShow',
+        'quantityArticle'
       ]),
+
     },
     name: 'Cart',
     data () {
@@ -79,9 +79,20 @@
       ...mapActions([
         'deleteArticle'
       ]),
+
       deleteItem (product) {
         this.deleteArticle(product)
       },
+
+      qteArticles (id) {
+        var qte = 0
+        for (var i = 0; i < this.articles.length; i++) {
+          if (this.articles[i].productId === id) {
+            qte++
+          }
+        }
+        return qte
+      }
 
     },
   }

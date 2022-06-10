@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     deleteArticle (state, product) {
       state.articles.splice(state.articles.indexOf(product), 1)
     },
+
   },
 
   actions: {
@@ -40,6 +41,15 @@ const store = new Vuex.Store({
 
     totalArticles (state) {
       return state.articles.length
+    },
+
+    articleToShow (state) {
+      return [...new Set(state.articles)]
+    },
+
+    quantityArticle (state) {
+      console.log(state.articles.productId)
+      return state.articles.productId
     }
   }
 
