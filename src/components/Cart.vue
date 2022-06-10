@@ -26,7 +26,7 @@
 
           <p class="text-end">{{item.productPrice}}€</p>
           <p class="text-end">- {{qteArticles(item.productId)}} +</p>
-          <h5 class="text-end">TOTAL : 0€</h5>
+          <h5 class="text-end">TOTAL : {{totalPerArticle(item)}}€</h5>
         </div>
       </div>
     </div>
@@ -91,7 +91,12 @@
             qte++
           }
         }
+
         return qte
+      },
+
+      totalPerArticle (product) {
+        return product.productPrice * this.qteArticles(product.productId)
       }
 
     },
